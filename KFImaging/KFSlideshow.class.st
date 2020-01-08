@@ -85,7 +85,7 @@ KFSlideshow class >> openReadMe [
 	window := SystemWindow allSubInstances 
 						detect: [:w | w label sameAs: self readMeTitle] ifNone: [nil].
 	window ifNotNil: [window owner ifNotNil: [^self]].
-	(StringHolder new contents: self readMeContents)
+	(Workspace new contents: self readMeContents; yourself)
 		openLabel: self readMeTitle.
  
 ]
