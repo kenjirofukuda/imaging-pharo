@@ -12,6 +12,6 @@ BaselineOfKFImaging >> baseline: spec [
 		do: [ 
 			spec
 				package: 'GeometryUtils'
-				with: [ spec repository: 'github://kenjirofukuda/geom-pharo:Pharo6.1' ].
+				with: [ spec repository: 'github://kenjirofukuda/geom-pharo:master' ].
 			spec package: #KFImaging with: [ spec requires: #('GeometryUtils') ] ]
 ]
