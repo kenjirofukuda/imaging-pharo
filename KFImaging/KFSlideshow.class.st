@@ -115,7 +115,7 @@ remove assignment for closure variable.
 
 { #category : #'initialize-release' }
 KFSlideshow >> abortWhenCursorTop [
-	^ActiveHand cursorPoint y <= 20.
+	^ World activeHand cursorPoint y <= 20.
 	
 ]
 
