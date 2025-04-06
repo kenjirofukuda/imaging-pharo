@@ -1,10 +1,12 @@
 Class {
-	#name : #KFMenuSupport,
-	#superclass : #Object,
-	#category : #'KFImaging-Morphic'
+	#name : 'KFMenuSupport',
+	#superclass : 'Object',
+	#category : 'KFImaging-Morphic',
+	#package : 'KFImaging',
+	#tag : 'Morphic'
 }
 
-{ #category : #compatibility }
+{ #category : 'compatibility' }
 KFMenuSupport class >> addToMenu: aMenu actionAssociations: labelToSelectorArray [
 	| appendSel |
 	"compatibility Pharo 3, 4"

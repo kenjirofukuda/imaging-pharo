@@ -1,10 +1,12 @@
 Class {
-	#name : #KFFreeTypeSupport,
-	#superclass : #Object,
-	#category : #'KFImaging-Core'
+	#name : 'KFFreeTypeSupport',
+	#superclass : 'Object',
+	#category : 'KFImaging-Core',
+	#package : 'KFImaging',
+	#tag : 'Core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 KFFreeTypeSupport class >> detectFontPath [
 	"self detectFontPath"
 	self favaritMonoSpaceFamilyNames do: [:assoc |
@@ -13,7 +15,7 @@ KFFreeTypeSupport class >> detectFontPath [
 	^nil.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 KFFreeTypeSupport class >> detectPointArrayClassFullRange: aBoolean [ 
 	| shortPointArrayClazz |
 	shortPointArrayClazz := Smalltalk at: #ShortPointArray ifAbsent: [ PointArray ].
@@ -22,7 +24,7 @@ KFFreeTypeSupport class >> detectPointArrayClassFullRange: aBoolean [
 		ifFalse:[ shortPointArrayClazz]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 KFFreeTypeSupport class >> doFontPloviderClass: aClassArgBlock [
 	"don't call this method".
 	"execute each line"
@@ -34,7 +36,7 @@ KFFreeTypeSupport class >> doFontPloviderClass: aClassArgBlock [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 KFFreeTypeSupport class >> favaritMonoSpaceFamilyNames [
 	"specify only ttf. can't specify ttc".
 	"  key: familyName"
@@ -43,7 +45,7 @@ KFFreeTypeSupport class >> favaritMonoSpaceFamilyNames [
 	"^ { 'IPAGothic'->'ipag' . 'MS UI Gothic'->'msgothic' . 'FreeMono'->'FreeMono' . 'Bitstream Vera Sans Mono'->'VeraMono' .}"
 ]
 
-{ #category : #'*KFImaging-Deprecated60' }
+{ #category : 'as yet unclassified' }
 KFFreeTypeSupport class >> fixTTFontDescriptionNilProblem [
 	<script>
 	| descClass |
@@ -63,18 +65,18 @@ KFFreeTypeSupport class >> fixTTFontDescriptionNilProblem [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 KFFreeTypeSupport class >> freeMonoFontPath [
 	"self freeMonoFontPath"
 	^self ttcFontPathFamilyNamed: 'FreeMono' fileShortName: 'FreeMono'.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 KFFreeTypeSupport class >> freeTypeFontProviderClass [
 	^Smalltalk at: #FreeTypeFontProvider ifAbsent: []
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 KFFreeTypeSupport class >> ttcFontPathFamilyNamed: aFontFamilyName fileShortName: aShortName [
 	"self freeMonoFontPath"
 	self doFontPloviderClass: [:clazz |
@@ -89,7 +91,7 @@ KFFreeTypeSupport class >> ttcFontPathFamilyNamed: aFontFamilyName fileShortName
 
 ]
 
-{ #category : #'*KFImaging-Deprecated60' }
+{ #category : 'as yet unclassified' }
 KFFreeTypeSupport class >> workspace [
 	"don't call this method".
 	"execute each line"
