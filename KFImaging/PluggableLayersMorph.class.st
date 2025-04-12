@@ -10,7 +10,7 @@ layerMap
 "
 Class {
 	#name : 'PluggableLayersMorph',
-	#superclass : 'ModelMorph',
+	#superclass : 'MorphicModel',
 	#instVars : [
 		'layerMap'
 	],
