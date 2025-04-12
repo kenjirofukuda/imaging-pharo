@@ -1,6 +1,6 @@
-Extension { #name : #Form }
+Extension { #name : 'Form' }
 
-{ #category : #'*KFImaging-extension' }
+{ #category : '*KFImaging-extension' }
 Form >> gtInspectorForm2In: composite [
 	<gtInspectorPresentationOrder: 100>  
 	^ composite morph 
@@ -8,12 +8,12 @@ Form >> gtInspectorForm2In: composite [
 		display: [ (self scaledToSize: 500@500) asMorph ]
 ]
 
-{ #category : #'*KFImaging-extension' }
+{ #category : '*KFImaging-extension' }
 Form >> isLandscape [
 	^self extent isLandscape 
 ]
 
-{ #category : #'*KFImaging-extension' }
+{ #category : '*KFImaging-extension' }
 Form >> isPortlit [
 	^self extent isPortlit 
 ]

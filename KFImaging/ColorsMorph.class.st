@@ -1,36 +1,38 @@
 Class {
-	#name : #ColorsMorph,
-	#superclass : #BorderedMorph,
+	#name : 'ColorsMorph',
+	#superclass : 'BorderedMorph',
 	#instVars : [
 		'colors'
 	],
-	#category : #'KFImaging-Morphic'
+	#category : 'KFImaging-Morphic',
+	#package : 'KFImaging',
+	#tag : 'Morphic'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 ColorsMorph class >> example [
 	"ColorsMorph example"
 
 	(self new initialize colors: Color indexedColors) openInWorld
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ColorsMorph >> colors [
 	^colors.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ColorsMorph >> colors: aColors [
 	colors := aColors
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ColorsMorph >> defaultBounds [
 	^10@10 extent: 500@60.
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 ColorsMorph >> drawOn: aCanvas [
 	| itemWidth r |
 	self colors ifNil: [super drawOn: aCanvas].

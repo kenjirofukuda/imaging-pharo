@@ -1,10 +1,12 @@
 Class {
-	#name : #KFEventSupport,
-	#superclass : #Object,
-	#category : #'KFImaging-Morphic'
+	#name : 'KFEventSupport',
+	#superclass : 'Object',
+	#category : 'KFImaging-Morphic',
+	#package : 'KFImaging',
+	#tag : 'Morphic'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 KFEventSupport class >> isWheelDownEvent: aEvent [
 	(aEvent isMouseWheel)
 		ifFalse: [ ^ false ].
@@ -13,7 +15,7 @@ KFEventSupport class >> isWheelDownEvent: aEvent [
 	^ aEvent direction = #down.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 KFEventSupport class >> isWheelUpEvent: aEvent [
 	(aEvent isMouseWheel)
 		ifFalse: [ ^ false ].
