@@ -25,8 +25,8 @@ updateBlock
 
 "
 Class {
-	#name : 'PluggableLayerMorph',
-	#superclass : 'MorphicModel',
+	#name : #PluggableLayerMorph,
+	#superclass : #MorphicModel,
 	#instVars : [
 		'symbol',
 		'drawOnBlock',
@@ -34,17 +34,15 @@ Class {
 		'stepTime',
 		'updateBlock'
 	],
-	#category : 'KFImaging-Morphic',
-	#package : 'KFImaging',
-	#tag : 'Morphic'
+	#category : 'KFImaging-Morphic'
 }
 
-{ #category : 'drawing' }
+{ #category : #drawing }
 PluggableLayerMorph >> drawLocalOn: aCanvas [
 
 ]
 
-{ #category : 'drawing' }
+{ #category : #drawing }
 PluggableLayerMorph >> drawOn: aCanvas [
 	super drawOn: aCanvas.
 	aCanvas
@@ -61,55 +59,55 @@ PluggableLayerMorph >> drawOn: aCanvas [
 				ifNil: [ self drawLocalOn: offsetCanvas ] ]
 ]
 
-{ #category : 'event handling' }
+{ #category : #'event handling' }
 PluggableLayerMorph >> handlesMouseOver: anEvent [
 	^true
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PluggableLayerMorph >> initialize [
 	super initialize.
 	self color: Color transparent.
 	
 ]
 
-{ #category : 'geometry' }
+{ #category : #geometry }
 PluggableLayerMorph >> innerExtent [
 	^self innerBounds extent.
 ]
 
-{ #category : 'geometry' }
+{ #category : #geometry }
 PluggableLayerMorph >> localInnerBounds [
 	^0@0 extent: self innerExtent.
 ]
 
-{ #category : 'geometry' }
+{ #category : #geometry }
 PluggableLayerMorph >> localPointOf: aPoint [
 	^aPoint - self innerBounds origin.
 ]
 
-{ #category : 'geometry' }
+{ #category : #geometry }
 PluggableLayerMorph >> localSensorPoint [
 
 	^ self localPointOf: self activeHand cursorPoint
 ]
 
-{ #category : 'event handling' }
+{ #category : #'event handling' }
 PluggableLayerMorph >> mouseEnter: anEvent [
 	self startStepping.
 ]
 
-{ #category : 'event handling' }
+{ #category : #'event handling' }
 PluggableLayerMorph >> mouseLeave: anEvent [
 	self stopStepping.
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 PluggableLayerMorph >> name [
 	^symbol asString.
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PluggableLayerMorph >> release [
 	self stopStepping.
 	drawOnBlock := nil.
@@ -121,7 +119,7 @@ PluggableLayerMorph >> release [
 	
 ]
 
-{ #category : 'addapter' }
+{ #category : #addapter }
 PluggableLayerMorph >> setDrawOnBlock: aBlock [
 	"arg1: Canvas
 	 arg2: layerMorph"
@@ -129,12 +127,12 @@ PluggableLayerMorph >> setDrawOnBlock: aBlock [
 	
 ]
 
-{ #category : 'addapter' }
+{ #category : #addapter }
 PluggableLayerMorph >> setStepBlock: aBlock [
 	stepBlock := aBlock.
 ]
 
-{ #category : 'addapter' }
+{ #category : #addapter }
 PluggableLayerMorph >> setUpdateBlock: aBlock [
 	"arg1: aParameter
 	 arg2: layerMorph"
@@ -142,30 +140,30 @@ PluggableLayerMorph >> setUpdateBlock: aBlock [
 	
 ]
 
-{ #category : 'stepping and presenter' }
+{ #category : #'stepping and presenter' }
 PluggableLayerMorph >> step [
 	stepBlock ifNotNil: [stepBlock value: self].
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 PluggableLayerMorph >> stepTime [
 	stepTime ifNil: [stepTime := 100000].
 	^stepTime.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PluggableLayerMorph >> stepTime: aNumber [
 	stepTime := aNumber
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PluggableLayerMorph >> symbol: aSymbol [
 	symbol := aSymbol.
 	
 	
 ]
 
-{ #category : 'updating' }
+{ #category : #updating }
 PluggableLayerMorph >> update: aParameter [
 	updateBlock ifNotNil: [updateBlock value: aParameter value: self].
 	super update: aParameter.

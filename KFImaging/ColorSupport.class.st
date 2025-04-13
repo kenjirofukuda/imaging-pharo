@@ -1,12 +1,10 @@
 Class {
-	#name : 'ColorSupport',
-	#superclass : 'Object',
-	#category : 'KFImaging-Core',
-	#package : 'KFImaging',
-	#tag : 'Core'
+	#name : #ColorSupport,
+	#superclass : #Object,
+	#category : 'KFImaging-Core'
 }
 
-{ #category : 'service' }
+{ #category : #service }
 ColorSupport class >> codeGenarateOn: aStream colors:  aColorArray varNamePrefix: aPrefix [
 	
 	aStream
@@ -34,13 +32,13 @@ ColorSupport class >> codeGenarateOn: aStream colors:  aColorArray varNamePrefix
 
 ]
 
-{ #category : 'service' }
+{ #category : #service }
 ColorSupport class >> hexStringArrayFromColors: aColorArray [
 	^aColorArray
 		collect: [ :color | '#', color hex].
 ]
 
-{ #category : 'service' }
+{ #category : #service }
 ColorSupport class >> mergeByLuminanceColors: aColorArray1 withColors: aColorArray2 [ 
 	| colorSet colors |
 
@@ -54,7 +52,7 @@ ColorSupport class >> mergeByLuminanceColors: aColorArray1 withColors: aColorArr
 	^ colors asArray.
 ]
 
-{ #category : 'service' }
+{ #category : #service }
 ColorSupport class >> pureColorOf: aColor [
 	aColor isGray
 		ifTrue: [
@@ -65,7 +63,7 @@ ColorSupport class >> pureColorOf: aColor [
 
 ]
 
-{ #category : 'service' }
+{ #category : #service }
 ColorSupport class >> sampleMorphOfColor: aColor [ 
 	"(self sampleMorphOfColor: Color blue) openInWorld."
 
@@ -80,13 +78,13 @@ ColorSupport class >> sampleMorphOfColor: aColor [
 	^ r
 ]
 
-{ #category : 'service' }
+{ #category : #service }
 ColorSupport class >> sampleMorphsOfColors: aColorArray [ 
 	^aColorArray
 		collect: [ :color | self sampleMorphOfColor: color].
 ]
 
-{ #category : 'service' }
+{ #category : #service }
 ColorSupport class >> sortByLuminanceColors: aColorArray [
 	| colorSet colors |
 

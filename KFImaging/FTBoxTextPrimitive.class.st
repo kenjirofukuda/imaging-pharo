@@ -1,12 +1,10 @@
 Class {
-	#name : 'FTBoxTextPrimitive',
-	#superclass : 'Object',
-	#category : 'KFImaging-Core',
-	#package : 'KFImaging',
-	#tag : 'Core'
+	#name : #FTBoxTextPrimitive,
+	#superclass : #Object,
+	#category : 'KFImaging-Core'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 FTBoxTextPrimitive class >> calcBoundsString: aString fontDescription: aFreeTypeFont [
 	"import from TTFontDescription's  initializeString"
 	"
@@ -26,7 +24,7 @@ FTBoxTextPrimitive class >> calcBoundsString: aString fontDescription: aFreeType
 	^ttBounds
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 FTBoxTextPrimitive class >> computeTransform: aMorphicBounds ttBounds: aDescriptionBounds ttBorderWidth: aTTwidth [ 
 	"WARNING: aTTborderWidth is not a final pixel width"
 	"import from TTSampleStringMorph's  computeTransform"
@@ -43,12 +41,12 @@ FTBoxTextPrimitive class >> computeTransform: aMorphicBounds ttBounds: aDescript
 	^ transform
 ]
 
-{ #category : 'queries' }
+{ #category : #queries }
 FTBoxTextPrimitive class >> defaultFont [
 	^ TextStyle defaultFont realFont
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 FTBoxTextPrimitive class >> drawOn: aCanvas string: aString fontDescription: aFreeTypeFont fillColor: aFillColor borderColor: aBorderCollor ttBorderWidth: aTTborderWidth transform: aTransform aaLevel: anAALebel [ 
 	"WARNING: aTTborderWidth is not a final pixel width"
 	"import from TTSimpleStringMorph's  drawOn:"
@@ -74,7 +72,7 @@ FTBoxTextPrimitive class >> drawOn: aCanvas string: aString fontDescription: aFr
 			xStart := xStart + glyph advanceX ] ]
 ]
 
-{ #category : 'examples' }
+{ #category : #examples }
 FTBoxTextPrimitive class >> example1 [
 	"Display restoreAfter: [self example1]"
 	| string ttBounds morphicBounds transform borderWidth borderColor fillColor canvas fontDescription aaLevel |
@@ -104,7 +102,7 @@ FTBoxTextPrimitive class >> example1 [
 		aaLevel: aaLevel
 ]
 
-{ #category : 'examples' }
+{ #category : #examples }
 FTBoxTextPrimitive class >> example2 [
 	<script>
 	(self defaultFont face glyphOfCharacter:  $a)  explore.

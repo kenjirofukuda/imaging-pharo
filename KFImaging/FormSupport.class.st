@@ -1,12 +1,10 @@
 Class {
-	#name : 'FormSupport',
-	#superclass : 'Object',
-	#category : 'KFImaging-Core',
-	#package : 'KFImaging',
-	#tag : 'Core'
+	#name : #FormSupport,
+	#superclass : #Object,
+	#category : 'KFImaging-Core'
 }
 
-{ #category : 'service' }
+{ #category : #service }
 FormSupport class >> convertToMonocroFilmForm: aForm [
 	| dstForm newColor |
 	dstForm := aForm asGrayScale as8BitColorForm.
@@ -28,7 +26,7 @@ FormSupport class >> convertToMonocroFilmForm: aForm [
 "
 ]
 
-{ #category : 'service' }
+{ #category : #service }
 FormSupport class >> convertToMonocroFilmMorph: aForm [
 	^(self convertToMonocroFilmForm: aForm) asMorph.
 
@@ -44,7 +42,7 @@ FormSupport class >> convertToMonocroFilmMorph: aForm [
 "
 ]
 
-{ #category : 'service' }
+{ #category : #service }
 FormSupport class >> fillForm: aBaseForm withMask: aFormOrColor [
 	| newForm  toneForm rule |
 	newForm := aBaseForm deepCopy.
@@ -56,7 +54,7 @@ FormSupport class >> fillForm: aBaseForm withMask: aFormOrColor [
 	^ newForm.
 ]
 
-{ #category : 'service' }
+{ #category : #service }
 FormSupport class >> hexStringOf32BitInteger: aNumber [
 
 	"Transcript cr; show: (self hexStringOf32BitInteger: -1)"
@@ -71,7 +69,7 @@ FormSupport class >> hexStringOf32BitInteger: aNumber [
 	
 ]
 
-{ #category : 'service' }
+{ #category : #service }
 FormSupport class >> makeHalftoneMaskForm: aBaseForm pattern: aFormOrColor [
 	| bwHalfToneForm |
 	bwHalfToneForm := Form extent: aBaseForm extent depth: 1.
@@ -85,12 +83,12 @@ FormSupport class >> makeHalftoneMaskForm: aBaseForm pattern: aFormOrColor [
 
 ]
 
-{ #category : 'service' }
+{ #category : #service }
 FormSupport class >> tallyUniqPixelValuesOf: aForm [
 	aForm tallyPixelValues asSet.
 ]
 
-{ #category : 'service' }
+{ #category : #service }
 FormSupport class >> usedColorsPanelFrom: aForm [ 
 	| top colors |
 	top := AlignmentMorph newColumn.

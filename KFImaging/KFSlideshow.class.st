@@ -9,18 +9,16 @@ isAbortBlock
 
 "
 Class {
-	#name : 'KFSlideshow',
-	#superclass : 'Object',
+	#name : #KFSlideshow,
+	#superclass : #Object,
 	#instVars : [
 		'isAbortBlock',
 		'displayBounds'
 	],
-	#category : 'KFImaging-Core',
-	#package : 'KFImaging',
-	#tag : 'Core'
+	#category : 'KFImaging-Core'
 }
 
-{ #category : 'examples' }
+{ #category : #examples }
 KFSlideshow class >> cursorForms [
 	^ ([ Cursor class allMethodsInCategory: #constants ]
 		on: Error
@@ -28,19 +26,19 @@ KFSlideshow class >> cursorForms [
 			collect: [ :sel | Cursor perform: sel ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 KFSlideshow class >> displayFull: aImage [
 	self displayFull: aImage inBounds: Display boundingBox.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 KFSlideshow class >> displayFull: aImage inBounds: aRectangle [
 	| scaledImage |
 	scaledImage := aImage scaledToSize: aRectangle extent.	
 	Display fadeImageHorFine: scaledImage at: ((aRectangle extent // 2) - (scaledImage extent // 2) + aRectangle origin).
 ]
 
-{ #category : 'examples' }
+{ #category : #examples }
 KFSlideshow class >> example [
 	"KFSlideshow example."
 
@@ -55,7 +53,7 @@ KFSlideshow class >> example [
 		onCancel: [ UIManager default inform: 'Cancel''ed' ]
 ]
 
-{ #category : 'examples' }
+{ #category : #examples }
 KFSlideshow class >> exampleCursor [
 	"KFSlideshow exampleCursor."
 	| slideShow images |
@@ -67,43 +65,46 @@ KFSlideshow class >> exampleCursor [
 		delaySeconds: 1
 ]
 
-{ #category : 'class initialization' }
+{ #category : #'class initialization' }
 KFSlideshow class >> initialize [
 	"self openReadMe"
 	"self openReadMe. "
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 KFSlideshow class >> isHighQuorityImage: aForm [
 	^((aForm extent y) > (aForm extent x))
 		ifTrue: [(aForm extent y >= 640) and: [aForm extent x >= 480]]
 		ifFalse: [(aForm extent y >= 480) and: [aForm extent x >= 640]].
 ]
 
-{ #category : 'documentation' }
+{ #category : #documentation }
 KFSlideshow class >> openReadMe [
+
 	"self openReadMe."
+
 	| window |
-	window := SystemWindow allSubInstances 
-						detect: [:w | w label sameAs: self readMeTitle] ifNone: [nil].
-	window ifNotNil: [window owner ifNotNil: [^self]].
-	(Workspace new contents: self readMeContents; yourself)
-		openLabel: self readMeTitle.
- 
+	window := SystemWindow allSubInstances
+		          detect: [ :w | w label sameAs: self readMeTitle ]
+		          ifNone: [ nil ].
+	window ifNotNil: [ window owner ifNotNil: [ ^ self ] ].
+	(Workspace new
+		 contents: self readMeContents;
+		 yourself) openLabel: self readMeTitle
 ]
 
-{ #category : 'documentation' }
+{ #category : #documentation }
 KFSlideshow class >> readMeContents [
 	^self readMeV001
 ]
 
-{ #category : 'documentation' }
+{ #category : #documentation }
 KFSlideshow class >> readMeTitle [
 	^'README - ', 'KFImaging'.
 
 ]
 
-{ #category : 'documentation' }
+{ #category : #documentation }
 KFSlideshow class >> readMeV001 [
 	^
 '
@@ -115,37 +116,37 @@ remove assignment for closure variable.
 '
 ]
 
-{ #category : 'initialize-release' }
+{ #category : #'initialize-release' }
 KFSlideshow >> abortWhenCursorTop [
 	^ World activeHand cursorPoint y <= 20.
 	
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 KFSlideshow >> didDisplayImage: aImage [
 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 KFSlideshow >> displayBounds [
 	displayBounds ifNil: [displayBounds := Display boundingBox].
 	^displayBounds
 	
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 KFSlideshow >> displayBounds: aRectangle [
 	self assert: [aRectangle width > 0 and: [aRectangle height > 0]].
 	displayBounds := aRectangle.
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 KFSlideshow >> displayFull: aForm [
 	self class displayFull: aForm inBounds: self displayBounds.
 	
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 KFSlideshow >> displayImage: aForm [
 	aForm ifNil: [ ^ self ].
 	self willDisplayImage: aForm.
@@ -153,7 +154,7 @@ KFSlideshow >> displayImage: aForm [
 	self didDisplayImage: aForm
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 KFSlideshow >> displayLoop [
 	| imageStream abort |
 	imageStream := self imageStream.
@@ -163,14 +164,14 @@ KFSlideshow >> displayLoop [
 			abort := self oneFrameDisplayImage: imageStream next].
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 KFSlideshow >> imageStream [
 	^ReadStream on: #().
 	
 	
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 KFSlideshow >> imagesFromPath: aDirectoryPath limit: aLimitCount extensions: extensionArray [
 	|col |
 	col := OrderedCollection new.
@@ -184,7 +185,7 @@ KFSlideshow >> imagesFromPath: aDirectoryPath limit: aLimitCount extensions: ext
 
 ]
 
-{ #category : 'initialize-release' }
+{ #category : #'initialize-release' }
 KFSlideshow >> initialize [
 	super initialize.
 	self setupDefaultAbortBlock.
@@ -192,7 +193,7 @@ KFSlideshow >> initialize [
 	
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 KFSlideshow >> isAbort [
 	isAbortBlock 
 		ifNotNil: [ | abort |
@@ -202,13 +203,13 @@ KFSlideshow >> isAbort [
 	^false.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 KFSlideshow >> isAbortBlock: aBooleanAbortBlock [
 	isAbortBlock := aBooleanAbortBlock
 	
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 KFSlideshow >> oneFrameDisplayImage: aImage [
 	self isAbort
 		ifTrue: [ ^ true ].
@@ -218,7 +219,7 @@ KFSlideshow >> oneFrameDisplayImage: aImage [
 	^ false
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 KFSlideshow >> pathsFromPath: aDirectoryPath limit: aLimitCount extensions: extensionArray [
 	|col |
 	col := OrderedCollection new.
@@ -232,18 +233,18 @@ KFSlideshow >> pathsFromPath: aDirectoryPath limit: aLimitCount extensions: exte
 
 ]
 
-{ #category : 'service' }
+{ #category : #service }
 KFSlideshow >> pngImagesFromPath: aDirectoryPath limit: aLimitCount [
 	self imagesFromPath: aDirectoryPath limit: aLimitCount extensions: #('png')
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 KFSlideshow >> privateDisplayImage: aForm [
 	self displayFull: aForm.
 	
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 KFSlideshow >> privateShowFileImages: aPaths preDisplayBlock: aPerDisplayBlock [
 	aPaths
 		do: [ :path | 
@@ -263,7 +264,7 @@ KFSlideshow >> privateShowFileImages: aPaths preDisplayBlock: aPerDisplayBlock [
 				ifTrue: [ ^ self ] ]
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 KFSlideshow >> privateShowImages: aImages preDisplayBlock: aPerDisplayBlock [ 
 	aImages do: 
 		[ :img | 
@@ -274,47 +275,47 @@ KFSlideshow >> privateShowImages: aImages preDisplayBlock: aPerDisplayBlock [
 		self isAbort ifTrue: [^self].]
 ]
 
-{ #category : 'initialize-release' }
+{ #category : #'initialize-release' }
 KFSlideshow >> setupDefaultAbortBlock [
 	self isAbortBlock: [self abortWhenCursorTop]
 	
 ]
 
-{ #category : 'service' }
+{ #category : #service }
 KFSlideshow >> showFileImages: aPaths delaySeconds: aDelaySeconds [ 
 	self 
 		showFileImages: aPaths
 		preDisplayBlock: [ (Delay forSeconds: aDelaySeconds) wait]
 ]
 
-{ #category : 'service' }
+{ #category : #service }
 KFSlideshow >> showFileImages: aImages preDisplayBlock: aPerDisplayBlock [
 	self privateShowFileImages: aImages preDisplayBlock: aPerDisplayBlock.
 	aPerDisplayBlock value.
 	Display restore
 ]
 
-{ #category : 'service' }
+{ #category : #service }
 KFSlideshow >> showImages: aImages delay: aDelay [
 	self deprecated: 'use #showImages:delaySeconds:'.
 	self showImages: aImages delaySeconds: aDelay
 ]
 
-{ #category : 'service' }
+{ #category : #service }
 KFSlideshow >> showImages: aImages delaySeconds: aDelaySeconds [ 
 	self 
 		showImages: aImages
 		preDisplayBlock: [ (Delay forSeconds: aDelaySeconds) wait]
 ]
 
-{ #category : 'service' }
+{ #category : #service }
 KFSlideshow >> showImages: aImages preDisplayBlock: aPerDisplayBlock [
 	self privateShowImages: aImages preDisplayBlock: aPerDisplayBlock.
 	aPerDisplayBlock value.
 	Display restore
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 KFSlideshow >> willDisplayImage: aImage [
 
 ]

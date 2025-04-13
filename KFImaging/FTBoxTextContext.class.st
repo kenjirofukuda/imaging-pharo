@@ -1,6 +1,6 @@
 Class {
-	#name : 'FTBoxTextContext',
-	#superclass : 'Object',
+	#name : #FTBoxTextContext,
+	#superclass : #Object,
 	#instVars : [
 		'string',
 		'morphicBounds',
@@ -13,12 +13,10 @@ Class {
 		'isPixelWidth',
 		'aaLevel'
 	],
-	#category : 'KFImaging-Core',
-	#package : 'KFImaging',
-	#tag : 'Core'
+	#category : 'KFImaging-Core'
 }
 
-{ #category : 'example' }
+{ #category : #example }
 FTBoxTextContext class >> example [
 	"self example"
 	|context |
@@ -28,7 +26,7 @@ FTBoxTextContext class >> example [
 	context drawOn: Display getCanvas string: Time now bounds: Rectangle fromUser.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 FTBoxTextContext class >> exampleKanji [
 	"self exampleKanji"
 	|context |
@@ -37,21 +35,21 @@ FTBoxTextContext class >> exampleKanji [
 	context drawOn: Display getCanvas string: 'かけます' bounds: Rectangle fromUser.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FTBoxTextContext >> aaLevel [
 	^ aaLevel
 	
 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FTBoxTextContext >> aaLevel: aLevel [
 	aaLevel := aLevel.
 	
 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FTBoxTextContext >> apiWidth [
 	transform ifNil: [^borderWidth].
 	 transform a11 isZero ifTrue: [^borderWidth].
@@ -59,58 +57,58 @@ FTBoxTextContext >> apiWidth [
 	^borderWidth	
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FTBoxTextContext >> borderColor [
 	^borderColor
 	
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FTBoxTextContext >> borderColor:  aColor [
 	borderColor := aColor.
 	
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FTBoxTextContext >> borderWidth [
 	^borderWidth
 	
 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FTBoxTextContext >> borderWidth:  anInteger [
 	borderWidth := anInteger.
 	self calcContext.
 	
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FTBoxTextContext >> borderWidthAsKeepTrueTypeValue [
 	isPixelWidth := false.
 	self calcContext.	
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FTBoxTextContext >> borderWidthAsPixelValue [
 	isPixelWidth := true.
 	self calcContext.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FTBoxTextContext >> bounds [
 	^morphicBounds
 	
 ]
 
-{ #category : 'geometry' }
+{ #category : #geometry }
 FTBoxTextContext >> bounds:  aRefctangle [
 	morphicBounds := aRefctangle.
 	self calcContext.
 	
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 FTBoxTextContext >> calcContext [
 	ttBounds := FTBoxTextPrimitive 
 		calcBoundsString: self string
@@ -121,7 +119,7 @@ FTBoxTextContext >> calcContext [
 		ttBorderWidth: self borderWidth
 ]
 
-{ #category : 'drawing' }
+{ #category : #drawing }
 FTBoxTextContext >> drawOn: aCanvas string: aString bounds: aBounds [ 
 	self fontDescription ifNil:[^self].
 	string := aString asString.
@@ -138,24 +136,24 @@ FTBoxTextContext >> drawOn: aCanvas string: aString bounds: aBounds [
 		aaLevel: self aaLevel
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FTBoxTextContext >> fillColor [
 	^fillColor
 	
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FTBoxTextContext >> fillColor:  aColor [
 	fillColor := aColor.
 	
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FTBoxTextContext >> fontDescription [
 	^fontDescription
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 FTBoxTextContext >> initialize [
 	super initialize.
 	string := SystemVersion current version.
@@ -169,19 +167,19 @@ FTBoxTextContext >> initialize [
 	
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FTBoxTextContext >> string [
 	^string
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 FTBoxTextContext >> string: aString [
 	string := aString.
 	self calcContext.
 	
 ]
 
-{ #category : 'drawing' }
+{ #category : #drawing }
 FTBoxTextContext >> strokeClasicalOn: aCanvas string: aString bounds: aBounds [
 	string :=  aString asString.
 	morphicBounds := aBounds.
@@ -190,7 +188,7 @@ FTBoxTextContext >> strokeClasicalOn: aCanvas string: aString bounds: aBounds [
 
 ]
 
-{ #category : 'drawing' }
+{ #category : #drawing }
 FTBoxTextContext >> strokeOn: aCanvas string: aString bounds: aBounds [
 	string :=  aString asString.
 	morphicBounds := aBounds.
