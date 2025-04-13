@@ -83,13 +83,16 @@ KFSlideshow class >> isHighQuorityImage: aForm [
 { #category : 'documentation' }
 KFSlideshow class >> openReadMe [
 	"self openReadMe."
+
 	| window |
-	window := SystemWindow allSubInstances 
-						detect: [:w | w label sameAs: self readMeTitle] ifNone: [nil].
-	window ifNotNil: [window owner ifNotNil: [^self]].
-	(Workspace new contents: self readMeContents; yourself)
-		openLabel: self readMeTitle.
- 
+	window := SystemWindow allSubInstances
+		          detect: [ :w | w label sameAs: self readMeTitle ]
+		          ifNone: [ nil ].
+	window ifNotNil: [ window owner ifNotNil: [ ^ self ] ].
+	self environment at: #Workspace ifPresent: [ :clazz |
+		(clazz new
+			 contents: self readMeContents;
+			 yourself) openLabel: self readMeTitle ]
 ]
 
 { #category : 'documentation' }
