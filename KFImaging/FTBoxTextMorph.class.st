@@ -1,15 +1,13 @@
 Class {
-	#name : 'FTBoxTextMorph',
-	#superclass : 'BorderedMorph',
+	#name : #FTBoxTextMorph,
+	#superclass : #BorderedMorph,
 	#instVars : [
 		'ttContext'
 	],
-	#category : 'KFImaging-Morphic',
-	#package : 'KFImaging',
-	#tag : 'Morphic'
+	#category : 'KFImaging-Morphic'
 }
 
-{ #category : 'example' }
+{ #category : #example }
 FTBoxTextMorph class >> example [
 	"self example."
 	self new 
@@ -18,21 +16,21 @@ FTBoxTextMorph class >> example [
 	 	openCenteredInWorld.
 ]
 
-{ #category : 'drawing' }
+{ #category : #drawing }
 FTBoxTextMorph >> drawOn: aCanvas [
 	super drawOn: aCanvas.
 	ttContext drawOn: aCanvas string: ttContext string bounds: self innerBounds.
 	
 ]
 
-{ #category : 'geometry' }
+{ #category : #geometry }
 FTBoxTextMorph >> extent: aBounds [
 	super extent: aBounds.
 	ttContext bounds: self bounds.
 	
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 FTBoxTextMorph >> initialize [
 	super initialize.
 	ttContext := FTBoxTextContext new.

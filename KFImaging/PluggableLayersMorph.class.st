@@ -9,17 +9,15 @@ layerMap
 
 "
 Class {
-	#name : 'PluggableLayersMorph',
-	#superclass : 'ModelMorph',
+	#name : #PluggableLayersMorph,
+	#superclass : #MorphicModel,
 	#instVars : [
 		'layerMap'
 	],
-	#category : 'KFImaging-Morphic',
-	#package : 'KFImaging',
-	#tag : 'Morphic'
+	#category : 'KFImaging-Morphic'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 PluggableLayersMorph class >> example [
 
 	"PluggableLayersMorph example"
@@ -73,29 +71,29 @@ PluggableLayersMorph class >> example [
 	m openInWorld
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 PluggableLayersMorph >> borderWidth: aPoint [
 	super borderWidth: aPoint.
 	layerMap do: [:each | each borderWidth: aPoint].
 ]
 
-{ #category : 'defaults' }
+{ #category : #defaults }
 PluggableLayersMorph >> defaultBounds [
 	^0@0 extent: 512@342.
 ]
 
-{ #category : 'defaults' }
+{ #category : #defaults }
 PluggableLayersMorph >> defaultLayerClass [
 	^PluggableLayerMorph
 ]
 
-{ #category : 'geometry' }
+{ #category : #geometry }
 PluggableLayersMorph >> extent: aPoint [
 	super extent: aPoint.
 	layerMap do: [ :each | each extent: aPoint ]
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PluggableLayersMorph >> initialize [
 	super initialize.
 	layerMap := Dictionary new.
@@ -103,7 +101,7 @@ PluggableLayersMorph >> initialize [
 	
 ]
 
-{ #category : 'element control' }
+{ #category : #'element control' }
 PluggableLayersMorph >> layerForKey: aSymbol [ 
 	^ layerMap 
 		at: aSymbol
@@ -114,7 +112,7 @@ PluggableLayersMorph >> layerForKey: aSymbol [
 			m ]
 ]
 
-{ #category : 'element control' }
+{ #category : #'element control' }
 PluggableLayersMorph >> newLayerForKey: aSymbol [ 
 	| m |
 	m := self defaultLayerClass  new.
@@ -123,20 +121,20 @@ PluggableLayersMorph >> newLayerForKey: aSymbol [
 	^ m
 ]
 
-{ #category : 'geometry' }
+{ #category : #geometry }
 PluggableLayersMorph >> position: aPoint [
 	super position: aPoint.
 	layerMap do: [ :each | each position: aPoint ]
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 PluggableLayersMorph >> release [
 	layerMap ifNotNil: [ layerMap do: [ :each | each release ] ].
 	layerMap := nil.
 	super release
 ]
 
-{ #category : 'element control' }
+{ #category : #'element control' }
 PluggableLayersMorph >> setVisible: aBoolean forKey: aSymbol [ 
 	^(self layerForKey: aSymbol) visible: aBoolean
 	

@@ -1,6 +1,6 @@
-Extension { #name : 'ColorForm' }
+Extension { #name : #ColorForm }
 
-{ #category : '*KFImaging' }
+{ #category : #'*KFImaging' }
 ColorForm class >> mappingWhiteToTransparentFrom: aFormOrCursor blackAsColor: aNewColor [ 
 	"Return a ColorForm copied from the given Form or Cursor
 	with white mapped to transparent."

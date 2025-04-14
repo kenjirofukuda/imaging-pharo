@@ -1,12 +1,10 @@
 Class {
-	#name : 'ImageTable',
-	#superclass : 'Object',
-	#category : 'KFImaging-Morphic',
-	#package : 'KFImaging',
-	#tag : 'Morphic'
+	#name : #ImageTable,
+	#superclass : #Object,
+	#category : 'KFImaging-Morphic'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 ImageTable class >> beTableLayout: aMorph [
 	aMorph clipSubmorphs: true.
 	aMorph vResizing: #shrinkWarp.
@@ -17,14 +15,14 @@ ImageTable class >> beTableLayout: aMorph [
 
 ]
 
-{ #category : 'debugging' }
+{ #category : #debugging }
 ImageTable class >> collectTopmostImagesExternalNamed: aExternalName [
 	^ImageMorph allInstances
 		select: [:m | (m owner class = PasteUpMorph)
 				and: [m externalName = aExternalName]]
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 ImageTable class >> createIconPanelMorph [
 	"self  createIconPanelMorph openInWorld"
 	| l |
@@ -35,7 +33,7 @@ ImageTable class >> createIconPanelMorph [
 	^l.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 ImageTable class >> openDisplayCenter: aMorph [
 	aMorph extent: (Display extent * 0.7) rounded.
 	aMorph center: Display center.

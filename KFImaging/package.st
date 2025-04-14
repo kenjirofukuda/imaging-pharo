@@ -1,1 +1,1 @@
-Package { #name : 'KFImaging' }
+Package { #name : #KFImaging }

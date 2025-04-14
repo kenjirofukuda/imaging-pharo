@@ -1,11 +1,11 @@
-Extension { #name : 'Point' }
+Extension { #name : #Point }
 
-{ #category : '*KFImaging' }
+{ #category : #'*KFImaging' }
 Point >> isLandscape [
 	^x > y
 ]
 
-{ #category : '*KFImaging' }
+{ #category : #'*KFImaging' }
 Point >> isPortlit [
 	^x < y
 ]

@@ -1,23 +1,21 @@
 Class {
-	#name : 'KFImagingSettings',
-	#superclass : 'Object',
+	#name : #KFImagingSettings,
+	#superclass : #Object,
 	#instVars : [
 		'pngSaveDirectory'
 	],
 	#classVars : [
 		'Instance'
 	],
-	#category : 'KFImaging-Morphic',
-	#package : 'KFImaging',
-	#tag : 'Morphic'
+	#category : 'KFImaging-Morphic'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 KFImagingSettings class >> instance [
 	^ Instance := Instance ifNil: [ self new ].
 ]
 
-{ #category : 'settings' }
+{ #category : #settings }
 KFImagingSettings class >> settingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder group: #KFImaging)
@@ -31,7 +29,7 @@ KFImagingSettings class >> settingsOn: aBuilder [
 
 ]
 
-{ #category : 'menu items' }
+{ #category : #'menu items' }
 KFImagingSettings class >> windowMenuOn: aBuilder [
 	"Window Shot utility"
 
@@ -45,18 +43,18 @@ KFImagingSettings class >> windowMenuOn: aBuilder [
 				withSeparatorAfter ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 KFImagingSettings >> pngSaveDirectory [
 	^ pngSaveDirectory ifNil: [
 		pngSaveDirectory :=  FileSystem workingDirectory fullName].
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 KFImagingSettings >> pngSaveDirectory: aFileReference [
 	pngSaveDirectory := aFileReference
 ]
 
-{ #category : 'menu items' }
+{ #category : #'menu items' }
 KFImagingSettings >> savePngMorph: aMorph [
 	PNGReadWriter
 		putForm: aMorph imageForm
