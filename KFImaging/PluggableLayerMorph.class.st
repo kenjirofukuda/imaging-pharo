@@ -26,7 +26,7 @@ updateBlock
 "
 Class {
 	#name : #PluggableLayerMorph,
-	#superclass : #MorphicModel,
+	#superclass : #ModelMorph,
 	#instVars : [
 		'symbol',
 		'drawOnBlock',
