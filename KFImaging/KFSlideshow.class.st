@@ -15,7 +15,7 @@ Class {
 		'isAbortBlock',
 		'displayBounds'
 	],
-	#category : #'KFImaging-Core'
+	#category : 'KFImaging-Core'
 }
 
 { #category : #examples }
@@ -80,14 +80,18 @@ KFSlideshow class >> isHighQuorityImage: aForm [
 
 { #category : #documentation }
 KFSlideshow class >> openReadMe [
+
 	"self openReadMe."
+
 	| window |
-	window := SystemWindow allSubInstances 
-						detect: [:w | w label sameAs: self readMeTitle] ifNone: [nil].
-	window ifNotNil: [window owner ifNotNil: [^self]].
-	(Workspace new contents: self readMeContents; yourself)
-		openLabel: self readMeTitle.
- 
+	window := SystemWindow allSubInstances
+		          detect: [ :w | w label sameAs: self readMeTitle ]
+		          ifNone: [ nil ].
+	window ifNotNil: [ window owner ifNotNil: [ ^ self ] ].
+	self environment at: #Workspace ifPresent: [ :clazz |
+		(clazz new
+			 contents: self readMeContents;
+			 yourself) openLabel: self readMeTitle ]
 ]
 
 { #category : #documentation }
@@ -115,7 +119,7 @@ remove assignment for closure variable.
 
 { #category : #'initialize-release' }
 KFSlideshow >> abortWhenCursorTop [
-	^ActiveHand cursorPoint y <= 20.
+	^ World activeHand cursorPoint y <= 20.
 	
 ]
 
@@ -168,7 +172,7 @@ KFSlideshow >> imageStream [
 	
 ]
 
-{ #category : #'*KFImaging-Deprecated60' }
+{ #category : #'as yet unclassified' }
 KFSlideshow >> imagesFromPath: aDirectoryPath limit: aLimitCount extensions: extensionArray [
 	|col |
 	col := OrderedCollection new.
@@ -216,7 +220,7 @@ KFSlideshow >> oneFrameDisplayImage: aImage [
 	^ false
 ]
 
-{ #category : #'*KFImaging-Deprecated60' }
+{ #category : #'as yet unclassified' }
 KFSlideshow >> pathsFromPath: aDirectoryPath limit: aLimitCount extensions: extensionArray [
 	|col |
 	col := OrderedCollection new.

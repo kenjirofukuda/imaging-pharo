@@ -34,7 +34,7 @@ Class {
 		'stepTime',
 		'updateBlock'
 	],
-	#category : #'KFImaging-Morphic'
+	#category : 'KFImaging-Morphic'
 }
 
 { #category : #drawing }
@@ -88,7 +88,8 @@ PluggableLayerMorph >> localPointOf: aPoint [
 
 { #category : #geometry }
 PluggableLayerMorph >> localSensorPoint [
-	^self localPointOf: Sensor cursorPoint.
+
+	^ self localPointOf: self activeHand cursorPoint
 ]
 
 { #category : #'event handling' }

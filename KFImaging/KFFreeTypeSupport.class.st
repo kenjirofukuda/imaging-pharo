@@ -43,7 +43,7 @@ KFFreeTypeSupport class >> favaritMonoSpaceFamilyNames [
 	"^ { 'IPAGothic'->'ipag' . 'MS UI Gothic'->'msgothic' . 'FreeMono'->'FreeMono' . 'Bitstream Vera Sans Mono'->'VeraMono' .}"
 ]
 
-{ #category : #'*KFImaging-Deprecated60' }
+{ #category : #'as yet unclassified' }
 KFFreeTypeSupport class >> fixTTFontDescriptionNilProblem [
 	<script>
 	| descClass |
@@ -89,7 +89,7 @@ KFFreeTypeSupport class >> ttcFontPathFamilyNamed: aFontFamilyName fileShortName
 
 ]
 
-{ #category : #'*KFImaging-Deprecated60' }
+{ #category : #'as yet unclassified' }
 KFFreeTypeSupport class >> workspace [
 	"don't call this method".
 	"execute each line"
