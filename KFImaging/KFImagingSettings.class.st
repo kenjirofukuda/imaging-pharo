@@ -59,6 +59,6 @@ KFImagingSettings >> savePngMorph: aMorph [
 	PNGReadWriter
 		putForm: aMorph imageForm
 		onFileNamed:
-			(self pngSaveDirectory asFileReference / (aMorph asString , '.png'))
+			(self pngSaveDirectory asFileReference / (UUID new asString , '.png'))
 				nextVersion
 ]
