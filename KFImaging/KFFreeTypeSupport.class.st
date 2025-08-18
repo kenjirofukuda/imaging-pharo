@@ -95,19 +95,19 @@ KFFreeTypeSupport class >> workspace [
 	"execute each line"
 
 self doFontPloviderClass: [:clazz | 
-	clazz current families explore].
+	clazz current families inspect].
 
 
 self doFontPloviderClass: [:clazz | 
-	clazz current families keys sort explore].
+	clazz current families keys sort inspect].
 
 self doFontPloviderClass: [:clazz | 
-	(clazz current families at: 'Courier New') explore].
+	(clazz current families at: 'Courier New') inspect].
 
 
 self doFontPloviderClass: [:clazz | 
 	((clazz current families at: 'Courier New') members detect: [:each |
-		each fileInfo absolutePath asFileEntry name asLowercase beginsWith: 'cour'] ifNone:[]) explore ].
+		each fileInfo absolutePath asFileEntry name asLowercase beginsWith: 'cour'] ifNone:[]) inspect ].
 
 
 "get only ttf family"
@@ -117,9 +117,9 @@ self doFontPloviderClass: [:clazz |
 			fm fileInfo absolutePath asFileEntry extension sameAs: 'ttf']
 		thenCollect: [:fm | 
 			(fm fileInfo familyName) ->
-			(fm fileInfo absolutePath asFileEntry name)])) sort: [:a :b | a key < b key]) explore.
+			(fm fileInfo absolutePath asFileEntry name)])) sort: [:a :b | a key < b key]) inspect.
 	
-self detectFontPath explore.
+self detectFontPath inspect.
 
 
 ]

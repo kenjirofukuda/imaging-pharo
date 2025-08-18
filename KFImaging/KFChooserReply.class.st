@@ -12,7 +12,7 @@ KFChooserReply class >> example [
 	"self example."
 
 	(KFChooserReply on: UIManager default chooseDirectory)
-		selectedPathDo: [ :path | path explore ]
+		selectedPathDo: [ :path | path inspect ]
 		onCancel: [ UIManager inform: 'Cancel''d' ]
 ]
 
