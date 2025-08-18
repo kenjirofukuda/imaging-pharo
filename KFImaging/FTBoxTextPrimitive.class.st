@@ -105,5 +105,5 @@ FTBoxTextPrimitive class >> example1 [
 { #category : #examples }
 FTBoxTextPrimitive class >> example2 [
 	<script>
-	(self defaultFont face glyphOfCharacter:  $a)  explore.
+	(self defaultFont face glyphOfCharacter: $a) inspect.
 ]
