@@ -6,22 +6,16 @@ Class {
 
 { #category : #'as yet unclassified' }
 FTBoxTextPrimitive class >> calcBoundsString: aString fontDescription: aFreeTypeFont [
-	"import from TTFontDescription's  initializeString"
+
 	"
-	self calcBoundsString: 'UNTITLED' fontDescription: TTFontDescription default.
+	self calcBoundsString: 'UNTITLED' fontDescription: FTBoxTextPrimitive defaultFont.
 	"
-	| xStart char glyph ttBounds |
+
+	self assert: aString notEmpty.
 	self assert: aFreeTypeFont notNil.
-	xStart := 0.
-	ttBounds := 0@0 corner: 0@0.
-	1 to: aString size do:
-		[:i | | bounds |
-		char := aString at: i.
-		glyph := aFreeTypeFont face glyphOfCharacter: char.
-		bounds := GeometryUtils lookupDataBounds: glyph outline pointCollection.	
-		ttBounds := ttBounds quickMerge: (bounds translateBy: xStart@0).
-		xStart := xStart + glyph advanceX].
-	^ttBounds
+	^ 0 @ 0
+		extent:
+		  (aFreeTypeFont widthOfString: aString)  @ aFreeTypeFont height
 ]
 
 { #category : #'as yet unclassified' }
