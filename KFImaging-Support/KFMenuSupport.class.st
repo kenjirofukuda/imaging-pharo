@@ -1,7 +1,7 @@
 Class {
 	#name : #KFMenuSupport,
 	#superclass : #Object,
-	#category : 'KFImaging-Morphic'
+	#category : #'KFImaging-Support'
 }
 
 { #category : #compatibility }
@@ -17,4 +17,8 @@ KFMenuSupport class >> addToMenu: aMenu actionAssociations: labelToSelectorArray
 			perform: appendSel
 			with: labelToSelector key
 			with: labelToSelector value ]
+]
+
+{ #category : #'see class side' }
+KFMenuSupport >> seeClassSide [
 ]
