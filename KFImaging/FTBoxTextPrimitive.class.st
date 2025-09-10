@@ -13,52 +13,60 @@ FTBoxTextPrimitive class >> calcBoundsString: aString fontDescription: aFreeType
 
 	self assert: aString notEmpty.
 	self assert: aFreeTypeFont notNil.
-	^ 0 @ 0
-		extent:
-		  (aFreeTypeFont widthOfString: aString)  @ aFreeTypeFont height
+	^ 0 @ 0 extent:
+		  (aFreeTypeFont widthOfString: aString) @ aFreeTypeFont height
 ]
 
 { #category : #'as yet unclassified' }
-FTBoxTextPrimitive class >> computeTransform: aMorphicBounds ttBounds: aDescriptionBounds ttBorderWidth: aTTwidth [ 
+FTBoxTextPrimitive class >> computeTransform: aMorphicBounds ttBounds: aDescriptionBounds ttBorderWidth: aTTwidth [
+
 	"WARNING: aTTborderWidth is not a final pixel width"
+
 	"import from TTSampleStringMorph's  computeTransform"
+
 	| cy transform |
-	aDescriptionBounds extent isZero
-		ifTrue: [ ^ MatrixTransform2x3 identity ].
-	cy := (aMorphicBounds origin y + aMorphicBounds corner y) * 0.5.
-	transform := MatrixTransform2x3 
-		transformFromLocal: (aDescriptionBounds insetBy: aTTwidth negated)
-		toGlobal: aMorphicBounds.
-	transform := transform composedWithGlobal: (MatrixTransform2x3 withOffset: 0 @ cy negated).
-	transform := transform composedWithGlobal: (MatrixTransform2x3 withScale: 1.0 @ -1.0).
-	transform := transform composedWithGlobal: (MatrixTransform2x3 withOffset: 0 @ cy).
+	aDescriptionBounds extent isZero ifTrue: [ 
+		^ MatrixTransform2x3 identity ].
+	cy := aMorphicBounds origin y + aMorphicBounds corner y * 0.5.
+	transform := MatrixTransform2x3
+		             transformFromLocal:
+		             (aDescriptionBounds insetBy: aTTwidth negated)
+		             toGlobal: aMorphicBounds.
+	transform := transform composedWithGlobal:
+		             (MatrixTransform2x3 withOffset: 0 @ cy negated).
+	transform := transform composedWithGlobal:
+		             (MatrixTransform2x3 withScale: 1.0 @ -1.0).
+	transform := transform composedWithGlobal:
+		             (MatrixTransform2x3 withOffset: 0 @ cy).
 	^ transform
 ]
 
 { #category : #queries }
 FTBoxTextPrimitive class >> defaultFont [
+
 	^ TextStyle defaultFont realFont
 ]
 
 { #category : #'as yet unclassified' }
-FTBoxTextPrimitive class >> drawOn: aCanvas string: aString fontDescription: aFreeTypeFont fillColor: aFillColor borderColor: aBorderCollor ttBorderWidth: aTTborderWidth transform: aTransform aaLevel: anAALebel [ 
+FTBoxTextPrimitive class >> drawOn: aCanvas string: aString fontDescription: aFreeTypeFont fillColor: aFillColor borderColor: aBorderCollor ttBorderWidth: aTTborderWidth transform: aTransform aaLevel: anAALebel [
+
 	"WARNING: aTTborderWidth is not a final pixel width"
+
 	"import from TTSimpleStringMorph's  drawOn:"
+
 	| xStart glyph |
 	xStart := 0.
-	aCanvas asBalloonCanvas preserveStateDuring: 
-		[ :balloonCanvas | 
+	aCanvas asBalloonCanvas preserveStateDuring: [ :balloonCanvas | 
 		balloonCanvas transformBy: aTransform.
 		balloonCanvas aaLevel: anAALebel.
-		aString do: 
-			[ :char | | contors |
+		aString do: [ :char | 
+			| contors |
 			glyph := aFreeTypeFont face glyphOfCharacter: char.
-			contors := 	glyph outline contoursCollection collect: [ :assoc | 
-					assoc value, { assoc value first } ].						
-			balloonCanvas preserveStateDuring: 
-				[ :subCanvas | 
+			contors := glyph outline contoursCollection collect: [ :assoc | 
+				           assoc value , { assoc value first } ].
+			balloonCanvas preserveStateDuring: [ :subCanvas | 
 				subCanvas transformBy: (MatrixTransform2x3 withOffset: xStart @ 0).
-				subCanvas 
+				subCanvas
 					drawGeneralPolygon: contors
 					color: aFillColor
 					borderWidth: aTTborderWidth
@@ -68,7 +76,9 @@ FTBoxTextPrimitive class >> drawOn: aCanvas string: aString fontDescription: aFr
 
 { #category : #examples }
 FTBoxTextPrimitive class >> example1 [
+
 	"Display restoreAfter: [self example1]"
+
 	| string ttBounds morphicBounds transform borderWidth borderColor fillColor canvas fontDescription aaLevel |
 	string := '監獄学園'.
 	morphicBounds := Rectangle fromUser.
@@ -78,14 +88,14 @@ FTBoxTextPrimitive class >> example1 [
 	canvas := Display getCanvas.
 	fontDescription := self defaultFont.
 	aaLevel := 4.
-	ttBounds := FTBoxTextPrimitive 
-		calcBoundsString: string
-		fontDescription: fontDescription.
-	transform := FTBoxTextPrimitive 
-		computeTransform: morphicBounds
-		ttBounds: ttBounds
-		ttBorderWidth: borderWidth.
-	FTBoxTextPrimitive 
+	ttBounds := FTBoxTextPrimitive
+		            calcBoundsString: string
+		            fontDescription: fontDescription.
+	transform := FTBoxTextPrimitive
+		             computeTransform: morphicBounds
+		             ttBounds: ttBounds
+		             ttBorderWidth: borderWidth.
+	FTBoxTextPrimitive
 		drawOn: canvas
 		string: string
 		fontDescription: fontDescription
@@ -98,6 +108,7 @@ FTBoxTextPrimitive class >> example1 [
 
 { #category : #examples }
 FTBoxTextPrimitive class >> example2 [
+
 	<script>
-	(self defaultFont face glyphOfCharacter:  $a)  inspect.
+	(self defaultFont face glyphOfCharacter: $a) inspect
 ]

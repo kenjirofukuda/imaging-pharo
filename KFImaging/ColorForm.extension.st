@@ -1,16 +1,22 @@
 Extension { #name : #ColorForm }
 
 { #category : #'*KFImaging' }
-ColorForm class >> mappingWhiteToTransparentFrom: aFormOrCursor blackAsColor: aNewColor [ 
+ColorForm class >> mappingWhiteToTransparentFrom: aFormOrCursor blackAsColor: aNewColor [
+
 	"Return a ColorForm copied from the given Form or Cursor
 	with white mapped to transparent."
+
 	| f map |
-	aFormOrCursor depth <= 8
-		ifFalse: [^ self error: 'argument depth must be 8-bits per pixel or less'].
+	aFormOrCursor depth <= 8 ifFalse: [ 
+		^ self error: 'argument depth must be 8-bits per pixel or less' ].
 	aFormOrCursor isColorForm
-		ifTrue: [f := aFormOrCursor deepCopy.
-			map := aFormOrCursor colors]
-		ifFalse: [f := ColorForm extent: aFormOrCursor extent depth: aFormOrCursor depth.
+		ifTrue: [ 
+			f := aFormOrCursor deepCopy.
+			map := aFormOrCursor colors ]
+		ifFalse: [ 
+			f := ColorForm
+				     extent: aFormOrCursor extent
+				     depth: aFormOrCursor depth.
 			f
 				copyBits: aFormOrCursor boundingBox
 				from: aFormOrCursor
@@ -19,16 +25,16 @@ ColorForm class >> mappingWhiteToTransparentFrom: aFormOrCursor blackAsColor: aN
 				rule: Form over
 				fillColor: nil.
 			map := Color indexedColors
-						copyFrom: 1
-						to: (1 bitShift: aFormOrCursor depth)].
-	map := map
-				collect: [:c | c = Color white
-						ifTrue: [Color transparent]
-						ifFalse: [c]].
-	map := map
-				collect: [:c | c = Color black
-						ifTrue: [aNewColor]
-						ifFalse: [c]].
+				       copyFrom: 1
+				       to: (1 bitShift: aFormOrCursor depth) ].
+	map := map collect: [ :c | 
+		       c = Color white
+			       ifTrue: [ Color transparent ]
+			       ifFalse: [ c ] ].
+	map := map collect: [ :c | 
+		       c = Color black
+			       ifTrue: [ aNewColor ]
+			       ifFalse: [ c ] ].
 	f colors: map.
 	^ f
 ]

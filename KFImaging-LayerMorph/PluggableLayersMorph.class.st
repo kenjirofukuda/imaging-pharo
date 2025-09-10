@@ -14,7 +14,7 @@ Class {
 	#instVars : [
 		'layerMap'
 	],
-	#category : 'KFImaging-Morphic'
+	#category : #'KFImaging-LayerMorph'
 }
 
 { #category : #'as yet unclassified' }
@@ -73,49 +73,53 @@ PluggableLayersMorph class >> example [
 
 { #category : #accessing }
 PluggableLayersMorph >> borderWidth: aPoint [
+
 	super borderWidth: aPoint.
-	layerMap do: [:each | each borderWidth: aPoint].
+	layerMap do: [ :each | each borderWidth: aPoint ]
 ]
 
 { #category : #defaults }
 PluggableLayersMorph >> defaultBounds [
-	^0@0 extent: 512@342.
+
+	^ 0 @ 0 extent: 512 @ 342
 ]
 
 { #category : #defaults }
 PluggableLayersMorph >> defaultLayerClass [
-	^PluggableLayerMorph
+
+	^ PluggableLayerMorph
 ]
 
 { #category : #geometry }
 PluggableLayersMorph >> extent: aPoint [
+
 	super extent: aPoint.
 	layerMap do: [ :each | each extent: aPoint ]
 ]
 
 { #category : #initialization }
 PluggableLayersMorph >> initialize [
+
 	super initialize.
 	layerMap := Dictionary new.
-	self color: Color white.
-	
+	self color: Color white
 ]
 
 { #category : #'element control' }
-PluggableLayersMorph >> layerForKey: aSymbol [ 
-	^ layerMap 
-		at: aSymbol
-		ifAbsentPut: 
-			[ | m |
-			m := self newLayerForKey: aSymbol.
-			self addMorph: m.
-			m ]
+PluggableLayersMorph >> layerForKey: aSymbol [
+
+	^ layerMap at: aSymbol ifAbsentPut: [ 
+		  | m |
+		  m := self newLayerForKey: aSymbol.
+		  self addMorph: m.
+		  m ]
 ]
 
 { #category : #'element control' }
-PluggableLayersMorph >> newLayerForKey: aSymbol [ 
+PluggableLayersMorph >> newLayerForKey: aSymbol [
+
 	| m |
-	m := self defaultLayerClass  new.
+	m := self defaultLayerClass new.
 	m extent: self extent.
 	m symbol: aSymbol.
 	^ m
@@ -123,19 +127,21 @@ PluggableLayersMorph >> newLayerForKey: aSymbol [
 
 { #category : #geometry }
 PluggableLayersMorph >> position: aPoint [
+
 	super position: aPoint.
 	layerMap do: [ :each | each position: aPoint ]
 ]
 
 { #category : #initialization }
 PluggableLayersMorph >> release [
+
 	layerMap ifNotNil: [ layerMap do: [ :each | each release ] ].
 	layerMap := nil.
 	super release
 ]
 
 { #category : #'element control' }
-PluggableLayersMorph >> setVisible: aBoolean forKey: aSymbol [ 
-	^(self layerForKey: aSymbol) visible: aBoolean
-	
+PluggableLayersMorph >> setVisible: aBoolean forKey: aSymbol [
+
+	^ (self layerForKey: aSymbol) visible: aBoolean
 ]
