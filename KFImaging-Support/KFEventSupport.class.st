@@ -9,6 +9,8 @@ KFEventSupport class >> isWheelDownEvent: aEvent [
 
 	aEvent isMouseWheel ifFalse: [ ^ false ].
 	(aEvent respondsTo: #isDown) ifTrue: [ ^ aEvent perform: #isDown ].
+	(aEvent respondsTo: #isWheelDown) ifTrue: [ 
+		^ aEvent perform: #isWheelDown ].
 	^ aEvent direction = #down
 ]
 
@@ -17,6 +19,8 @@ KFEventSupport class >> isWheelUpEvent: aEvent [
 
 	aEvent isMouseWheel ifFalse: [ ^ false ].
 	(aEvent respondsTo: #isUp) ifTrue: [ ^ aEvent perform: #isUp ].
+	(aEvent respondsTo: #isWheelUp) ifTrue: [ 
+		^ aEvent perform: #isWheelUp ].
 	^ aEvent direction = #up
 ]
 
