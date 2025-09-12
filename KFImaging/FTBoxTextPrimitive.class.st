@@ -26,18 +26,18 @@ FTBoxTextPrimitive class >> computeTransform: aMorphicBounds ttBounds: aDescript
 
 	| cy transform |
 	aDescriptionBounds extent isZero ifTrue: [ 
-		^ MatrixTransform2x3 identity ].
+		^ GeometryUtils transformClass identity ].
 	cy := aMorphicBounds origin y + aMorphicBounds corner y * 0.5.
-	transform := MatrixTransform2x3
+	transform := GeometryUtils transformClass
 		             transformFromLocal:
 		             (aDescriptionBounds insetBy: aTTwidth negated)
 		             toGlobal: aMorphicBounds.
 	transform := transform composedWithGlobal:
-		             (MatrixTransform2x3 withOffset: 0 @ cy negated).
+		             (GeometryUtils transformClass withOffset: 0 @ cy negated).
 	transform := transform composedWithGlobal:
-		             (MatrixTransform2x3 withScale: 1.0 @ -1.0).
+		             (GeometryUtils transformClass withScale: 1.0 @ -1.0).
 	transform := transform composedWithGlobal:
-		             (MatrixTransform2x3 withOffset: 0 @ cy).
+		             (GeometryUtils transformClass withOffset: 0 @ cy).
 	^ transform
 ]
 
@@ -65,7 +65,7 @@ FTBoxTextPrimitive class >> drawOn: aCanvas string: aString fontDescription: aFr
 			contors := glyph outline contoursCollection collect: [ :assoc | 
 				           assoc value , { assoc value first } ].
 			balloonCanvas preserveStateDuring: [ :subCanvas | 
-				subCanvas transformBy: (MatrixTransform2x3 withOffset: xStart @ 0).
+				subCanvas transformBy: (GeometryUtils transformClass withOffset: xStart @ 0).
 				subCanvas
 					drawGeneralPolygon: contors
 					color: aFillColor
