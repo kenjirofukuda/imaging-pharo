@@ -117,7 +117,7 @@ KFBitEditMorph >> initialize [
 { #category : #'event handling' }
 KFBitEditMorph >> mouseDown: aMouseEvent [
 
-	| localPoint formPoint val |
+	| localPoint formPoint  |
 	aMouseEvent redButtonChanged ifFalse: [ ^ self ].
 	localPoint := aMouseEvent cursorPoint - self innerBounds origin.
 	Transcript
@@ -127,13 +127,9 @@ KFBitEditMorph >> mouseDown: aMouseEvent [
 	Transcript
 		cr;
 		show: formPoint printString.
-	val := pointToStateMap at: formPoint ifAbsentPut: [ 0 ].
-	val = 0 ifTrue: [ pointToStateMap at: formPoint put: 1 ].
-	val = 1 ifTrue: [ pointToStateMap at: formPoint put: 2 ].
-	val = 2 ifTrue: [ pointToStateMap at: formPoint put: 0 ].
-	self invalidRect:
-		((formPoint * gridStep extent: gridStep asPoint) translateBy:
-			 self innerBounds origin)
+	self rotateValueAt: formPoint.
+	self invalidLocalRect:
+		(formPoint * gridStep extent: gridStep asPoint)
 ]
 
 { #category : #'event handling' }
@@ -144,4 +140,21 @@ KFBitEditMorph >> mouseWheel: event [
 	(KFEventSupport isWheelUpEvent: event) ifTrue: [ dir := 1.0 ].
 	(KFEventSupport isWheelDownEvent: event) ifTrue: [ dir := -1.0 ].
 	self gridStep: gridStep + dir
+]
+
+{ #category : #'private ' }
+KFBitEditMorph >> rotateIndex: anIndex [
+	
+	| next |
+	next := anIndex + 1.
+	next >= colors size ifTrue: [ ^ 0 ].
+	^ next
+]
+
+{ #category : #accessing }
+KFBitEditMorph >> rotateValueAt: formPoint [
+	| val |
+	val := pointToStateMap at: formPoint ifAbsentPut: [ 0 ].
+	val := self rotateIndex: val.
+	pointToStateMap at: formPoint put: val.
 ]
